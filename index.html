@@ -23,7 +23,7 @@
                 <span class="text-apvs-yellow font-black ml-1">BRASIL</span>
             </div>
             
-            <a href="https://wa.me/5511999999999" class="bg-green-500 hover:bg-green-600 px-5 py-2 rounded-full font-bold text-sm transition flex items-center gap-2">
+            <a href="https://wa.me/5511958648250" class="bg-green-500 hover:bg-green-600 px-5 py-2 rounded-full font-bold text-sm transition flex items-center gap-2">
                 <i class="fab fa-whatsapp"></i> SUPORTE
             </a>
         </div>
@@ -61,6 +61,11 @@
                             class="w-full mt-1 p-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-blue-800 outline-none font-bold">
                     </div>
                     <div>
+                        <label class="block text-xs font-black text-gray-500 uppercase tracking-widest">Cidade</label>
+                        <input type="text" id="cidade" placeholder="Sua Cidade" required
+                            class="w-full mt-1 p-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-blue-800 outline-none font-bold">
+                    </div>
+                    <div>
                         <label class="block text-xs font-black text-gray-500 uppercase tracking-widest">WhatsApp com DDD</label>
                         <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" required
                             class="w-full mt-1 p-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-blue-800 outline-none font-bold">
@@ -87,22 +92,22 @@
     <script>
         document.getElementById('formCotacao').addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const placa = document.getElementById('placa').value;
             const nome = document.getElementById('nome').value;
+            const cidade = document.getElementById('cidade').value;
             const zap = document.getElementById('whatsapp').value;
             const email = document.getElementById('email').value;
             
-            // COLOQUE SEU NÚMERO ABAIXO
             const meuWhats = "5511958648250"; 
             
-            const mensagem = `*INTERESSE EM PROTEÇÃO VEICULAR*%0A%0A👤 *Nome:* ${nome}%0A🚗 *Placa:* ${placa}%0A📧 *E-mail:* ${email}%0A📱 *WhatsApp:* ${zap}%0A%0A_Favor entrar em contato com o valor da cotação._`;
+            const mensagem = `*INTERESSE EM PROTEÇÃO VEICULAR*%0A%0A👤 *Nome:* ${nome}%0A🏙️ *Cidade:* ${cidade}%0A🚗 *Placa:* ${placa}%0A📧 *E-mail:* ${email}%0A📱 *WhatsApp:* ${zap}%0A%0A_Favor entrar em contato com o valor da cotação._`;
             
             document.getElementById('msgSucesso').classList.remove('hidden');
             
             setTimeout(() => {
                 window.location.href = `https://wa.me/${meuWhats}?text=${mensagem}`;
             }, 800);
-        });
-    </script>
-</body>
+        }); // Fechamento da função
+    </script> </body>
 </html>
