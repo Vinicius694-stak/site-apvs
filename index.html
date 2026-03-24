@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="n5CVgd37Qoqx_VdCNsLX4BY8qcw7eXHIix6WpAxp1PM" />
 
     <title>APVS Brasil | Proteção Veicular - Cotação Online em 30s</title>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "APVS Brasil Proteção Veicular",
+      "serviceType": "Proteção Veicular",
+      "areaServed": { "@type": "Country", "name": "Brasil" },
+      "description": "Líder em proteção veicular na América Latina. Roubo, furto e colisão com assistência 24h.",
+      "provider": {
+        "@type": "Organization",
+        "name": "APVS Brasil",
+        "url": "https://site-apvs.vercel.app/"
+      }
+    }
+    </script>
 
     <link rel="icon" type="image/png" href="logo-Global.png">
     <link rel="apple-touch-icon" href="logo-Global.png">
@@ -15,11 +35,12 @@
     <meta property="og:site_name" content="APVS Brasil">
     <meta name="apple-mobile-web-app-title" content="APVS Brasil">
 
-    <meta name="description" content="Proteja seu veículo com a maior associação da América Latina. Roubo, furto, colisão e guincho 24h. Cotação rápida via WhatsApp!">
-    <meta name="keywords" content="APVS, proteção veicular, cotar seguro, proteção apvs, assistência 24h">
+    <meta name="description" content="Proteja seu veículo com a APVS Brasil, a maior associação da América Latina. Roubo, furto, colisão e guincho 24h. Cotação rápida via WhatsApp!">
+    <meta name="keywords" content="APVS Brasil, proteção veicular nacional, cotar proteção veicular, assistência 24h, rastreamento veicular, melhor proteção veicular 2026">
+    <link rel="canonical" href="https://site-apvs.vercel.app/" />
 
     <meta property="og:title" content="APVS Brasil - Proteção Veicular">
-    <meta property="og:description" content="Cote agora e proteja seu patrimônio com a líder do mercado.">
+    <meta property="og:description" content="Cote agora e proteja seu patrimônio com a líder do mercado nacional.">
     <meta property="og:image" content="https://apvs.com.br/wp-content/uploads/2023/04/Logo-APVS-Brasil.png">
     <meta property="og:url" content="https://site-apvs.vercel.app/">
     <meta property="og:type" content="website">
@@ -52,14 +73,14 @@
     <div class="container mx-auto max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-200">
         
         <div class="md:w-1/2 bg-apvs-blue p-6 text-white flex flex-col justify-center items-center">
-            <img src="banner-apvs.png" alt="Benefícios APVS - Roubo, Furto e Colisão" class="max-w-full h-auto drop-shadow-2xl transform hover:scale-105 transition-transform duration-300">
+            <img src="banner-apvs.png" alt="Proteção Veicular APVS Brasil - Roubo, Furto e Colisão" class="max-w-full h-auto drop-shadow-2xl transform hover:scale-105 transition-transform duration-300">
             <p class="mt-6 text-apvs-yellow font-black italic text-center text-xl">
                 A MAIOR DA AMÉRICA LATINA!
             </p>
         </div>
 
         <div class="md:w-1/2 p-10 bg-slate-50">
-            <h2 class="text-2xl font-black text-gray-800 mb-2 uppercase italic">Cotação Grátis</h2>
+            <h1 class="text-2xl font-black text-gray-800 mb-2 uppercase italic">APVS Brasil: Cotação Grátis</h1>
             <p class="text-gray-500 mb-8 font-semibold">Receba o valor agora no seu WhatsApp.</p>
             
             <form id="formCotacao" class="space-y-5">
@@ -93,7 +114,7 @@
                     class="w-full bg-apvs-yellow hover:bg-yellow-400 text-apvs-blue font-black py-5 rounded-xl shadow-[0_10px_20px_rgba(255,215,0,0.3)] transition-all transform hover:scale-[1.02] text-xl uppercase italic">
                     Quero Proteger meu Veículo!
                 </button>
-                               
+                                
                 <p id="msgSucesso" class="hidden text-center text-blue-800 font-black mt-4 animate-bounce">
                      AGUARDE... ENVIANDO DADOS!
                 </p>
