@@ -154,7 +154,7 @@
         <div class="space-y-6">
             <div>
                 <label class="block text-sm font-bold mb-2">Valor FIPE do seu Veículo (R$)</label>
-                <input type="number" id="valorFipe" placeholder="Ex: 50000" 
+                <input type="number" id="valorFipe" value="50000" placeholder="Ex: 50000" 
                     class="w-full p-4 rounded-xl text-blue-900 font-bold outline-none">
             </div>
 
@@ -186,11 +186,9 @@
 <script>
     const inputFipe = document.getElementById('valorFipe');
     
-    inputFipe.addEventListener('input', function() {
-        let fipe = parseFloat(this.value) || 0;
+    function calcularEconomia() {
+        let fipe = parseFloat(inputFipe.value) || 0;
         
-        // Lógica de mercado: Seguro custa em média 6% da FIPE p/ ano
-        // APVS custa em média 2.5% da FIPE p/ ano (exemplo agressivo)
         let seguroTradicional = (fipe * 0.06);
         let custoApvsMensal = (fipe * 0.025) / 12;
         let economiaAnual = seguroTradicional - (custoApvsMensal * 12);
@@ -198,7 +196,13 @@
         document.getElementById('custoSeguro').innerText = `R$ ${seguroTradicional.toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
         document.getElementById('custoApvs').innerText = `R$ ${custoApvsMensal.toLocaleString('pt-br', {minimumFractionDigits: 2})}/mês`;
         document.getElementById('economiaAnual').innerText = `R$ ${economiaAnual.toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
-    });
+    }
+
+    // Ouvinte para quando o usuário digita
+    inputFipe.addEventListener('input', calcularEconomia);
+
+    // Executa o cálculo assim que a página é carregada
+    window.addEventListener('load', calcularEconomia);
 
     function enviarSimulacaoZap() {
         const fipe = document.getElementById('valorFipe').value;
@@ -207,9 +211,6 @@
         window.location.href = `https://wa.me/5511958648250?text=${msg}`;
     }
 </script>
-
-
-
 
 <footer class="bg-gray-800 text-gray-400 py-8 px-4 text-center text-sm">
     <div class="container mx-auto">
