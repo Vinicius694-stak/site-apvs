@@ -161,19 +161,19 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white/10 p-4 rounded-xl border border-white/20">
                     <p class="text-xs uppercase font-bold opacity-70">Seguro Tradicional (Média)</p>
-                    <p id="custoSeguro" class="text-2xl font-black text-red-400">R$ 0,00</p>
+                    <p id="custoSeguro" class="text-2xl font-black text-red-400">R$ 3.000,00</p>
                     <span class="text-[10px]">*Estimativa baseada em perfil médio</span>
                 </div>
                 <div class="bg-white/10 p-4 rounded-xl border border-yellow-400">
                     <p class="text-xs uppercase font-bold text-apvs-yellow">Com APVS Brasil</p>
-                    <p id="custoApvs" class="text-2xl font-black text-green-400">R$ 0,00</p>
+                    <p id="custoApvs" class="text-2xl font-black text-green-400">R$ 104,17/mês</p>
                     <span class="text-[10px]">*Valor médio mensal da cota</span>
                 </div>
             </div>
 
             <div class="text-center bg-yellow-400 p-6 rounded-2xl">
                 <p class="text-blue-900 font-black text-xl uppercase italic">Você Economiza Anualmente:</p>
-                <p id="economiaAnual" class="text-blue-900 text-4xl font-black">R$ 0,00</p>
+                <p id="economiaAnual" class="text-blue-900 text-4xl font-black">R$ 1.750,00</p>
             </div>
 
             <button onclick="enviarSimulacaoZap()" class="w-full bg-green-500 hover:bg-green-600 text-white font-black py-4 rounded-xl transition-all uppercase italic flex items-center justify-center gap-2">
@@ -198,10 +198,7 @@
         document.getElementById('economiaAnual').innerText = `R$ ${economiaAnual.toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
     }
 
-    // Ouvinte para quando o usuário digita
     inputFipe.addEventListener('input', calcularEconomia);
-
-    // Executa o cálculo assim que a página é carregada
     window.addEventListener('load', calcularEconomia);
 
     function enviarSimulacaoZap() {
