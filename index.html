@@ -144,6 +144,73 @@
     </div>
 </section>
 
+<section class="max-w-4xl mx-auto py-12 px-4">
+    <div class="bg-apvs-blue rounded-3xl p-8 text-white shadow-2xl border-4 border-yellow-400">
+        <h3 class="text-2xl font-black uppercase italic text-center mb-6">
+            <i class="fas fa-calculator text-apvs-yellow mr-2"></i> 
+            Simulador de Economia Real
+        </h3>
+        
+        <div class="space-y-6">
+            <div>
+                <label class="block text-sm font-bold mb-2">Valor FIPE do seu Veículo (R$)</label>
+                <input type="number" id="valorFipe" placeholder="Ex: 50000" 
+                    class="w-full p-4 rounded-xl text-blue-900 font-bold outline-none">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white/10 p-4 rounded-xl border border-white/20">
+                    <p class="text-xs uppercase font-bold opacity-70">Seguro Tradicional (Média)</p>
+                    <p id="custoSeguro" class="text-2xl font-black text-red-400">R$ 0,00</p>
+                    <span class="text-[10px]">*Estimativa baseada em perfil médio</span>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl border border-yellow-400">
+                    <p class="text-xs uppercase font-bold text-apvs-yellow">Com APVS Brasil</p>
+                    <p id="custoApvs" class="text-2xl font-black text-green-400">R$ 0,00</p>
+                    <span class="text-[10px]">*Valor médio mensal da cota</span>
+                </div>
+            </div>
+
+            <div class="text-center bg-yellow-400 p-6 rounded-2xl">
+                <p class="text-blue-900 font-black text-xl uppercase italic">Você Economiza Anualmente:</p>
+                <p id="economiaAnual" class="text-blue-900 text-4xl font-black">R$ 0,00</p>
+            </div>
+
+            <button onclick="enviarSimulacaoZap()" class="w-full bg-green-500 hover:bg-green-600 text-white font-black py-4 rounded-xl transition-all uppercase italic flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp"></i> GARANTIR ESSA ECONOMIA AGORA
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    const inputFipe = document.getElementById('valorFipe');
+    
+    inputFipe.addEventListener('input', function() {
+        let fipe = parseFloat(this.value) || 0;
+        
+        // Lógica de mercado: Seguro custa em média 6% da FIPE p/ ano
+        // APVS custa em média 2.5% da FIPE p/ ano (exemplo agressivo)
+        let seguroTradicional = (fipe * 0.06);
+        let custoApvsMensal = (fipe * 0.025) / 12;
+        let economiaAnual = seguroTradicional - (custoApvsMensal * 12);
+
+        document.getElementById('custoSeguro').innerText = `R$ ${seguroTradicional.toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
+        document.getElementById('custoApvs').innerText = `R$ ${custoApvsMensal.toLocaleString('pt-br', {minimumFractionDigits: 2})}/mês`;
+        document.getElementById('economiaAnual').innerText = `R$ ${economiaAnual.toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
+    });
+
+    function enviarSimulacaoZap() {
+        const fipe = document.getElementById('valorFipe').value;
+        const economia = document.getElementById('economiaAnual').innerText;
+        const msg = `*SIMULAÇÃO DE ECONOMIA*%0A%0A🚗 *Valor FIPE:* R$ ${fipe}%0A💰 *Economia estimada:* ${economia}%0A%0A_Quero confirmar esses valores e proteger meu veículo!_`;
+        window.location.href = `https://wa.me/5511958648250?text=${msg}`;
+    }
+</script>
+
+
+
+
 <footer class="bg-gray-800 text-gray-400 py-8 px-4 text-center text-sm">
     <div class="container mx-auto">
         <p class="font-bold text-white mb-4 uppercase tracking-widest">Atendimento Nacional</p>
