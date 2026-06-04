@@ -154,26 +154,26 @@
         <div class="space-y-6">
             <div>
                 <label class="block text-sm font-bold mb-2">Valor FIPE do seu Veículo (R$)</label>
-                <input type="number" id="valorFipe" value="50000" placeholder="Ex: 50000" 
+                <input type="text" id="valorFipe" placeholder="R$ 0,00" 
                     class="w-full p-4 rounded-xl text-blue-900 font-bold outline-none">
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white/10 p-4 rounded-xl border border-white/20">
                     <p class="text-xs uppercase font-bold opacity-70">Seguro Tradicional (Média)</p>
-                    <p id="custoSeguro" class="text-2xl font-black text-red-400">R$ 3.000,00</p>
+                    <p id="custoSeguro" class="text-2xl font-black text-red-400">R$ 0,00</p>
                     <span class="text-[10px]">*Estimativa baseada em perfil médio</span>
                 </div>
                 <div class="bg-white/10 p-4 rounded-xl border border-yellow-400">
                     <p class="text-xs uppercase font-bold text-apvs-yellow">Com APVS Brasil</p>
-                    <p id="custoApvs" class="text-2xl font-black text-green-400">R$ 104,17/mês</p>
+                    <p id="custoApvs" class="text-2xl font-black text-green-400">R$ 0,00/mês</p>
                     <span class="text-[10px]">*Valor médio mensal da cota</span>
                 </div>
             </div>
 
             <div class="text-center bg-yellow-400 p-6 rounded-2xl">
                 <p class="text-blue-900 font-black text-xl uppercase italic">Você Economiza Anualmente:</p>
-                <p id="economiaAnual" class="text-blue-900 text-4xl font-black">R$ 1.750,00</p>
+                <p id="economiaAnual" class="text-blue-900 text-4xl font-black">R$ 0,00</p>
             </div>
 
             <button onclick="enviarSimulacaoZap()" class="w-full bg-green-500 hover:bg-green-600 text-white font-black py-4 rounded-xl transition-all uppercase italic flex items-center justify-center gap-2">
@@ -185,10 +185,39 @@
 
 <script>
     const inputFipe = document.getElementById('valorFipe');
-    
-    function calcularEconomia() {
-        let fipe = parseFloat(inputFipe.value) || 0;
+
+    // Função para aplicar a máscara de R$ 0.000,00
+    function mascaraMoeda(event) {
+        let value = event.target.value;
         
+        // Remove tudo o que não é dígito
+        value = value.replace(/\D/g, "");
+        
+        // Converte para decimal
+        value = (value / 100).toFixed(2) + "";
+        
+        // Coloca a vírgula e os pontos
+        value = value.replace(".", ",");
+        value = value.replace(/(\d)(\?=(\d{3})+(?!\d))/g, "$1.");
+        
+        // Adiciona o prefixo
+        event.target.value = value ? "R$ " + value : "";
+        
+        calcularEconomia();
+    }
+
+    function calcularEconomia() {
+        // Converte o valor da máscara de volta para número puro para o cálculo
+        let valorLimpo = inputFipe.value.replace(/\D/g, "") / 100;
+        let fipe = parseFloat(valorLimpo) || 0;
+        
+        if(fipe === 0) {
+            document.getElementById('custoSeguro').innerText = "R$ 0,00";
+            document.getElementById('custoApvs').innerText = "R$ 0,00/mês";
+            document.getElementById('economiaAnual').innerText = "R$ 0,00";
+            return;
+        }
+
         let seguroTradicional = (fipe * 0.06);
         let custoApvsMensal = (fipe * 0.025) / 12;
         let economiaAnual = seguroTradicional - (custoApvsMensal * 12);
@@ -198,13 +227,12 @@
         document.getElementById('economiaAnual').innerText = `R$ ${economiaAnual.toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
     }
 
-    inputFipe.addEventListener('input', calcularEconomia);
-    window.addEventListener('load', calcularEconomia);
+    inputFipe.addEventListener('input', mascaraMoeda);
 
     function enviarSimulacaoZap() {
-        const fipe = document.getElementById('valorFipe').value;
+        const fipe = inputFipe.value;
         const economia = document.getElementById('economiaAnual').innerText;
-        const msg = `*SIMULAÇÃO DE ECONOMIA*%0A%0A🚗 *Valor FIPE:* R$ ${fipe}%0A💰 *Economia estimada:* ${economia}%0A%0A_Quero confirmar esses valores e proteger meu veículo!_`;
+        const msg = `*SIMULAÇÃO DE ECONOMIA*%0A%0A🚗 *Valor FIPE:* ${fipe}%0A💰 *Economia estimada:* ${economia}%0A%0A_Quero confirmar esses valores e proteger meu veículo!_`;
         window.location.href = `https://wa.me/5511958648250?text=${msg}`;
     }
 </script>
