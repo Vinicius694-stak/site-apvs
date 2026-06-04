@@ -186,28 +186,34 @@
 <script>
     const inputFipe = document.getElementById('valorFipe');
 
-    // Função para aplicar a máscara de R$ 0.000,00
     function mascaraMoeda(event) {
         let value = event.target.value;
         
-        // Remove tudo o que não é dígito
+        // 1. Remove tudo o que não é número
         value = value.replace(/\D/g, "");
         
-        // Converte para decimal
-        value = (value / 100).toFixed(2) + "";
+        // 2. Se estiver vazio, limpa o campo
+        if (value === "") {
+            event.target.value = "";
+            return;
+        }
+
+        // 3. Converte para decimal (centavos)
+        value = (parseInt(value) / 100).toFixed(2);
         
-        // Coloca a vírgula e os pontos
-        value = value.replace(".", ",");
-        value = value.replace(/(\d)(\?=(\d{3})+(?!\d))/g, "$1.");
+        // 4. Converte para o padrão brasileiro (com ponto no milhar e vírgula no decimal)
+        let partes = value.split(".");
+        partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         
-        // Adiciona o prefixo
-        event.target.value = value ? "R$ " + value : "";
+        let resultado = "R$ " + partes.join(",");
+        
+        event.target.value = resultado;
         
         calcularEconomia();
     }
 
     function calcularEconomia() {
-        // Converte o valor da máscara de volta para número puro para o cálculo
+        // Pega apenas os números para calcular
         let valorLimpo = inputFipe.value.replace(/\D/g, "") / 100;
         let fipe = parseFloat(valorLimpo) || 0;
         
@@ -236,6 +242,8 @@
         window.location.href = `https://wa.me/5511958648250?text=${msg}`;
     }
 </script>
+
+
 
 <footer class="bg-gray-800 text-gray-400 py-8 px-4 text-center text-sm">
     <div class="container mx-auto">
