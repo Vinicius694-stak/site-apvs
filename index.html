@@ -274,5 +274,45 @@
     });
 </script>
 
+<div id="popupSaida" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center border-4 border-yellow-400 relative">
+        <button onclick="fecharPopup()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        
+        <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-hand-holding-usd text-4xl text-blue-900"></i>
+        </div>
+        
+        <h2 class="text-2xl font-black text-blue-900 uppercase italic mb-2">ESPERA! NÃO VÁ EMBORA...</h2>
+        <p class="text-gray-600 font-bold mb-6">Você sabia que motoristas na sua região estão economizando mais de <span class="text-green-600">R$ 1.500,00</span> por ano com a APVS?</p>
+        
+        <div class="space-y-4">
+            <a href="https://wa.me/5511958648250?text=Vi+o+aviso+e+não+quero+perder+dinheiro.+Quero+minha+economia!" 
+               class="block bg-green-500 hover:bg-green-600 text-white font-black py-4 rounded-xl shadow-lg transition-transform hover:scale-105 uppercase italic">
+                <i class="fab fa-whatsapp mr-2"></i> QUERO MINHA ECONOMIA
+            </a>
+            <button onclick="fecharPopup()" class="text-xs text-gray-400 underline uppercase tracking-widest font-bold">Não, prefiro continuar pagando caro</button>
+        </div>
+    </div>
+</div>
+
+<script>
+        // Lógica do Pop-up
+        let popupExibido = false;
+        document.addEventListener("mouseleave", function(e) {
+            if (e.clientY < 0 && !popupExibido) {
+                document.getElementById('popupSaida').classList.remove('hidden');
+                document.getElementById('popupSaida').classList.add('flex');
+                popupExibido = true;
+            }
+        });
+
+        function fecharPopup() {
+            document.getElementById('popupSaida').classList.add('hidden');
+            document.getElementById('popupSaida').classList.remove('flex');
+        }
+    </script>
+
 </body>
 </html>
