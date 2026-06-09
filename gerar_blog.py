@@ -40,7 +40,7 @@ def gerar_html_blog(titulo, pauta):
                     <p>A grande vantagem aqui não é apenas o preço, mas a ausência de análise de perfil por condutor, focando exclusivamente no valor do bem.</p>
                 </div>
 
-                <p>Muitos motoristas perdem dinheiro anualmente por não entenderem a diferença entre o amparo compartilhado mútuo e os prêmios de seguros tradicionais mais burocráticos...</p>
+                <p>A falta de informação custa caro: milhares de motoristas pagam valores elevados todos os anos sem saber que existem alternativas ao modelo tradicional de seguros...</p>
                 
                 <div class="mt-10 border-t-2 border-gray-100 pt-6">
                     <h4 class="text-sm font-black text-blue-950 uppercase tracking-wider mb-3">📍 Atendimento Especializado na Sua Região:</h4>
